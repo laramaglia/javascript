@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        div#area {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            background-color: olive;
+            color: rgb(63, 33, 20);
+            font-size: 2.5em;
+            width: 220px;
+            height: 220px;
+            line-height: 200px;
+            text-align: center;
+        }
+    </style>
+    <title>Eventos DOM</title>
+</head>
+<body>
+    <!--
+    <div id="area" onclick="clicar()" onmouseenter="clique()" onmouseout="saiu()">    
+    -->
+    <div id="area">
+        Interaja...
+    </div>
+    <script>
+        var a = window.document.getElementById('area')
+        // outra maneira de fazer, sem poluir o HTML;
+        a.addEventListener('click', clicar)
+        a.addEventListener('mouseenter', clique)
+        a.addEventListener('mouseout', saiu)
+
+        function clique () {
+            a.innerText = 'Clique...'
+        }
+        function clicar() {
+            a.innerText = 'Clicou!'  
+        }
+        function saiu() {
+            a.innerText = 'Interaja...'
+        }
+    </script>
+    
+</body>
+</html>
