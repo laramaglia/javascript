@@ -1,12 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Verificador de Idade</title>
+    <style> 
+    
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: rgb(214, 214, 152);
+    }
+
+    div#maior {
+        background-color: beige;
+        border-radius: 15px;
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.37);
+        width: 40%;
+        margin: auto;
+        height: 250px;
+        display: block;
+    }
+
+    h1, a {
+        color: white;
+        text-align: center;
+    }
+
+    a {
+        text-decoration: none;
+        font-size: 1.2em;
+    }
+
+    div > p {
+        color: black;
+        text-align: center;
+        font-size: 1.5em;
+        padding-top: 20px;
+    }
+
+    footer {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    </style>
 </head>
 <body>
-    
+    <h1>Verificador de Idade</h1>
+
+    <div id="maior">
+        <form action="verificador.php" method="get">
+
+            <input type="date" name="data" id="idata">
+            <br>
+
+            <label for="igenero">
+                <input type="radio" name="genero" id="igenero" value="masculino">Masculino
+            </label>
+
+            <label for="igenero">
+                <input type="radio" name="genero" id="igenero" value="feminino">Feminino
+            </label>
+
+            <label for="igenero">
+                <input type="radio" name="genero" id="igenero" value="naobinarie">Não-Binárie
+            </label>
+            <br>
+
+            <input type="button" value="Verificar">
+
+            <p>Preencha os dados acima para verificar!</p>
+        </form>
+    </div>
+
+    <footer><a href="#">@CursoEmVideo</a></footer>
+
+    <script>
+        var ano = new Date()
+        var anoAtual = ano.getFullYear()
+        var anoNasc = document.querySelector('input#idata')
+        var anoNasc = anoNasc.getFullYear()
+        var idade = anoNasc - anoAtual
+        var genero = document.querySelector('input#igenero')
+
+        if 
+    </script>
 </body>
 </html>
