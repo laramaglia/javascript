@@ -5,35 +5,177 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verificador de Idade</title>
+    <style> 
+    
+    * {
+        margin: 0px;
+        padding: 0px;;
+    }
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: rgb(214, 214, 152);
+    }
+
+    section {
+        background-color: beige;
+        border-radius: 15px;
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.37);
+        width: 70%;
+        max-width: 300px;
+        margin: auto;
+        padding-top: 1px;
+        height: 450px;
+        display: block;
+    }
+
+    input#idata {
+        width: 47px;
+        margin: 4px;
+    }
+
+    h1 {
+        padding: 15px;
+    }
+
+    h1, a {
+        color: white;
+        text-align: center;
+    }
+
+    a {
+        text-decoration: none;
+        font-size: 1.2em;
+    }
+
+    div#form {
+        border: 1px solid rgb(95, 95, 65);
+        border-radius: 15px;
+        margin: 15px;
+        padding: 10px;
+    }
+
+    div#res {
+        text-align: center;
+    }
+
+    div > p {
+        color: black;
+        text-align: right
+        font-size: 1em;
+    }
+
+    label {
+        font-size: 0.8em;
+    }
+    
+    #botao {
+        margin-top: 10px;
+        padding: 3px;
+    }
+
+    p#comando {
+        font-size: 0.6em;
+        text-align: center;
+    }
+
+    img {
+        border-radius: 50%;
+        margin: auto;
+        height: 180px;
+        padding-top: 20px;
+    }
+
+    footer {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    </style>
 </head>
 <body>
     <h1>Verificador de Idade</h1>
 
-    <div id="maior">
-        <form action="verificador.php" method="get">
-
-            <input type="date" name="data" id="idata">
+    <section>
+        <div id="form">
+            <p><strong>Ano de Nascimento:</strong>
+                <input type="number" name="data" id="idata" min="4" placeholder="0000">
+            </p>
             <br>
+            <p><strong>Gênero :</strong><br>
+                <label for="igeneromasc">Masculino</label>
+                <input type="radio" name="genero" id="igeneromasc" value="masculino">
+                <br>
+                <label for="igenerofem">Feminino</label>
+                <input type="radio" name="genero" id="igenerofem" value="feminino">
+                <br>
+                <label for="igeneronb">Não-Binárie</label>
+                <input type="radio" name="genero" id="igeneronb" value="naobinarie">
+            </p>
+            <input id="botao" type="button" value="Verificar" onclick="verificar()">
+            
+        </div>
+        <div id="res">
+            <p id="comando">Preencha os dados acima para verificar!</p>
+            <p id="idade"></p>
+        </div>
+    </section>
 
-            <label for="igenero">
-                <input type="radio" name="genero" id="igenero" value="masculino">Masculino
-            </label>
+    <footer><a href="#">@CursoEmVideo</a></footer>
 
-            <label for="igenero">
-                <input type="radio" name="genero" id="igenero" value="feminino">Feminino
-            </label>
+    <script>
+    function verificar() {
+        var data = new Date()
+        var anoAtual = data.getFullYear()
+        var anoNasc = document.getElementById('idata')
+        var res = document.getElementById('res')
+        if (anoNasc.value.length != 4 || anoNasc > anoAtual) {
+            window.alert('Erro com campo "Ano de Nascimento", tente novamente.')
+        } else {
+            var gen = document.getElementsByName('genero')
+            var idade = Number(anoAtual) - Number(anoNasc.value)
+            var genero = ''
+            var img = document.createElement('img')
+            img.setAttribute ('id', 'imagem')
 
-            <label for="igenero">
-                <input type="radio" name="genero" id="igenero" value="naobinarie">Não-Binárie
-            </label>
-            <br>
-
-            <input type="button" value="Verificar">
-
-            <p>Preencha os dados acima para verificar!</p>
-        </form>
-    </div>
-    
-    <p><a href="#">@CursoEmVideo</a></p>
+            if (gen[0].checked) {
+                genero = 'do gênero masculino'
+                if (idade < 13) {
+                    img.setAttribute('src', 'imagens/crianca-m.jpg')
+                } else if (idade < 18) {
+                    img.setAttribute('src', 'imagens/adolescente-m.jpg')
+                } else if (idade < 60) {
+                    img.setAttribute('src', 'imagens/adulto-m.jpg')
+                } else {
+                    img.setAttribute('src', 'imagens/idoso-m.jpg')
+                }
+            } else if (gen[1].checked) {
+                genero = 'do gênero feminino'
+                if (idade < 13) {
+                    img.setAttribute('src', 'imagens/crianca-f.jpg')
+                } else if (idade < 18) {
+                    img.setAttribute('src', 'imagens/adolescente-f.jpg')
+                } else if (idade < 60) {
+                    img.setAttribute('src', 'imagens/adulto-f.jpg')
+                } else {
+                    img.setAttribute('src', 'imagens/idoso-f.jpg')
+                }
+            } else if (gen[2].checked) {
+                genero = 'não-binária'
+                if (idade < 13) {
+                    img.setAttribute('src', 'imagens/crianca-nb.jpg')                
+                } else if (idade < 18) {
+                    img.setAttribute('src', 'imagens/adolescente-nb.jpg')
+                } else if (idade < 60) {
+                    img.setAttribute('src', 'imagens/adulto-nb.jpg')
+                } else {
+                    img.setAttribute('src', 'imagens/idoso-nb.jpg')
+                }
+            }
+        }
+        res.style.testAlign = 'center'
+        res.innerHTML = `Pessoa ${genero} de ${idade} anos.`
+        res.appendChild(img)
+    }
+    </script>
 </body>
 </html>

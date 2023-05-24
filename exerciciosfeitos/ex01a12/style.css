@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(214, 214, 152);
+}
+
+div#maior {
+    background-color: beige;
+    border-radius: 15px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.37);
+    width: 90%;
+    margin: auto;
+    height: 300px;
+    display: block;
+}
+
+h1, a {
+    color: white;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+div#horario > p {
+    color: black;
+    text-align: center;
+    font-size: 1.5em;
+    padding-top: 20px;
+}
+
+div#img > img {
+    border-radius: 50%;
+    height: 200px;
+    display: block;
+    margin: auto;
+    margin-top: 30px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+}

@@ -4,82 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: rgb(214, 214, 152);
-        }
-
-        div#maior {
-            background-color: beige;
-            border-radius: 15px;
-            box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.37);
-            width: 90%;
-            margin: auto;
-            height: 300px;
-            display: block;
-        }
-
-        h1, a {
-            color: white;
-            text-align: center;
-        }
-
-        a {
-            text-decoration: none;
-            font-size: 1.2em;
-        }
-
-        div#horario > p {
-            color: black;
-            text-align: center;
-            font-size: 1.5em;
-            padding-top: 20px;
-        }
-
-        div#imagem > img {
-            border-radius: 50%;
-            height: 200px;
-            display: block;
-            margin: auto;
-            margin-top: 30px;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
     <title>Hora de Agora</title>
 </head>
-<body>
+<body onload="carregar()">
     <h1>Hora do Dia</h1>
     <div id="maior">
         <div id="horario"></div>
-        <div id="imagem"></div>    
+        <div id="img">
+            <img id="imagem" src="imagens/manha.jpg" alt="manhã">
+        </div>    
     </div>
     <footer><a href="#">@CursoEmVideo</a></footer>
+
     <script>
-        var agora = new Date()
-        var hora = agora.getHours()
+        function carregar() {
+
+        var data = new Date()
+        var hora = data.getHours()
         var horario = document.querySelector('div#horario')
         horario.innerHTML = `<p>Agora são ${hora} horas.</p>`
-
-        document.getElementById('imagem')
+        var imagem = document.getElementById('imagem')
 
         if (hora >= 5 && hora < 12) {
-            document.querySelector('picture#dia')
-            imagem.innerHTML = `<img src="imagens/manha.jpg" alt="dia">`
+            imagem.src = 'imagens/manha.jpg'
             document.body.style.backgroundColor = 'rgb(231, 209, 176)';
-        } else if (hora >= 12 && hora <= 18) {
-            document.querySelector('picture#tarde')
-            imagem.innerHTML = `<img src="imagens/tarde.jpg" alt="tarde">`
+        } else if (hora >= 12 && hora <= 18) {   
+            imagem.src = 'imagens/tarde.jpg'
             document.body.style.backgroundColor = 'rgb(206, 135, 30';
         } else {
-            document.querySelector('picture#noite')
-            imagem.innerHTML = `<img src="imagens/noite.jpg" alt="noite">`  
+            imagem.src = 'imagens/noite.jpg'  
             document.body.style.backgroundColor = 'rgb(33, 32, 73';
         }
+    }        
     </script>
 </body>
 </html>
