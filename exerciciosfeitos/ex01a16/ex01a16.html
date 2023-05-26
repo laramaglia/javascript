@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisador de Números</title>
+    <style>
+         * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        body, html {
+            background-color: rgb(1, 54, 37);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        header > h1 {
+            padding: 30px;
+            color: white;
+            text-align: center;
+        }
+
+        section {
+            background-color: rgb(235, 223, 223);
+            min-height: 200px;
+            width: 80%;
+            max-width: 300px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 25px;
+            box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.616);
+        }
+
+        input {
+            width: 50px;
+            margin: 20px 0px;
+        }
+
+        #botaoAdd, #botaoFin {
+            width: 150px;
+        }
+        
+        #botaoAdd {
+            margin-top: 0px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-left: 15px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Analisador de Números</h1>
+    </header>
+    <section>
+        <div>
+            <label for="inpNum">Digite um número de 1 a 100: </label>
+            <input type="number" id="inpNum">
+
+            <input type="button" id="botaoAdd" value="Adicionar" onclick="adicionar()">
+        </div>
+        <div>
+            <select id="select" size="10"></select><br>
+            <input type="button" value="Finalizar" id="botaoFin" onclick="finalizar()">
+            <p id="final"></p>
+        </div>
+    </section>
+    <footer><a href="#">@CursoEmVideo</a></footer>
+    <script>
+        var nCom = []
+        var numCad = 0
+        var maior = 0
+        var menor = 100
+        var soma = 0
+        var media = 0
+
+        function adicionar() {
+            let num = document.getElementById('inpNum')
+            let n = Number(num.value)
+            let sel = document.getElementById('select')
+            
+            if (n > 100 || n < 1){
+                window.alert('ERRO! Digite um número de 1 a 100.')
+            } else if (nCom.indexOf(n) != -1) {
+                window.alert('ERRO! Este número já foi adicionado, tente outro valor.')
+            } else {
+                nCom.push(n)
+                numCad++
+                let op = document.createElement('option')
+                op.text += `Valor ${n} adicionado!`
+                sel.appendChild(op)
+                soma += n
+            }
+            if (n > maior) {
+                maior = n
+            } 
+                    
+            if (n < menor) {
+                menor = n
+            }   
+        }
+
+        function finalizar() {
+            let final = document.getElementById('final')
+            let media = soma / numCad
+            final.innerText = `${numCad} números foram cadastrados; O maior número cadastrado foi ${maior} e o menor foi ${menor}; a soma de todos os número é ${soma} e a média dos valores digitados é ${media}.`
+        }
+    </script>
+</body>
+</html>
