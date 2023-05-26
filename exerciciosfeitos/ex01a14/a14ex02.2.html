@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabuada</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        body, html {
+            background-color: rgb(78, 1, 1);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        header > h1 {
+            padding: 30px;
+            color: white;
+            text-align: center;
+        }
+
+        section {
+            background-color: rgb(235, 223, 223);
+            height: 300px;
+            width: 80%;
+            max-width: 300px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 25px;
+        }
+
+        input {
+            width: 50px;
+            margin: 20px 0px;
+        }
+
+        #botao {
+            width: 100px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-left: 15px;
+        }
+
+        ul {
+            list-style: none;
+            text-align: center;
+            margin-top: 15px;
+            border: 1px solid black;
+            border-radius: 15px;
+            padding: 10px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tabuada</h1>
+    </header>
+    <section>
+        <div>
+            <label for="tabuadade">Número: </label>
+            <input type="number" id="num">
+
+            <input type="button" value="Gerar Tabuada" id="botao" onclick="calcular()">
+        </div>
+        <div>
+            <select name="tabuada" id="seltab" size="10">
+                <option>Digite um número acima</option>
+            </select>
+        </div>
+    </section>
+        <footer>
+            <p><a href="#">@CursoEmVideo</a></p>
+        </footer>  
+        <script>
+            function calcular() {
+                let num = document.getElementById('num')
+                let tab = document.getElementById('seltab')
+
+                if (num.value.length == 0){
+                    window.alert('ERRO! Digite um número.')
+                } else {
+                    let n = Number(num.value)
+                    let c = 1
+                    tab.innerHTML = ''  //para antes de começas a mostrar a tabuada, a area select é limpa e não acumula tabuadas anteriores; 
+                    while (c <= 10) {
+                        let iten = document.createElement('option') //essa linha é como se criasse um <option> dentro de select;
+                        iten.text = `${n} X ${c} = ${n*c}`
+                        tab.appendChild(iten)   //adiciona um elemento filho a tab, que será iten
+                        c++
+                    }
+                }
+            }
+        </script>
+</body>
+</html>

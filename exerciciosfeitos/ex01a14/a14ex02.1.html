@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabuada</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        body, html {
+            background-color: rgb(78, 1, 1);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        header > h1 {
+            padding: 30px;
+            color: white;
+            text-align: center;
+        }
+
+        section {
+            background-color: rgb(235, 223, 223);
+            height: 300px;
+            width: 80%;
+            max-width: 300px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 25px;
+        }
+
+        input {
+            width: 50px;
+            margin: 20px 0px;
+        }
+
+        #botao {
+            width: 100px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-left: 15px;
+        }
+
+        ul {
+            list-style: none;
+            text-align: center;
+            margin-top: 15px;
+            border: 1px solid black;
+            border-radius: 15px;
+            padding: 10px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tabuada</h1>
+    </header>
+    <section>
+        <div>
+            <label for="tabuadade">Número: </label>
+            <input type="text" id="tabuadade">
+
+            <input type="button" value="Gerar Tabuada" id="botao" onclick="calcular()">
+        </div>
+        <div>
+            <ul id="ul"></ul>
+        </div>
+    </section>
+        <footer>
+            <p><a href="#">@CursoEmVideo</a></p>
+        </footer>  
+        <script>
+            function calcular() {
+                var tab = document.querySelector('input#tabuadade')
+                var numTabuada = Number(tab.value)  //Número digitado pelo usuário
+                var passo = 0   //Número a multiplicar o número digitado pelo usuário
+                var multRes = ''   //Resultado da multiplicação
+                var lista = ``  //Espaço para guardar o HTML de cada linha da tabuada
+                var tabuadaFinal = ''   //Espaço para guardar o HTML da tabuada completa
+                
+                if (tab.value.trim() === ''){
+                    window.alert('Digite um número')
+                } else {
+                    while (passo <= 10){
+                        multRes = numTabuada * passo
+                        lista = `<li> ${numTabuada} X ${passo} = ${multRes}`
+                        tabuadaFinal += lista
+                        passo += 1 
+                    }
+                }
+                var ul = document.getElementById('ul')
+                ul.innerHTML = (tabuadaFinal)
+            }
+        </script>
+</body>
+</html>

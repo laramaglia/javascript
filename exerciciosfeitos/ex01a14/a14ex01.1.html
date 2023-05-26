@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body, html {
+            background-color: rgb(51, 108, 121);
+        }
+
+        header > h1 {
+            color: antiquewhite;
+            text-align: center;
+            font-size: 3em;
+            padding: 35px;
+        }
+
+        section {
+            background-color: rgb(206, 224, 228);
+            box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.479);
+            width: 80%;
+            max-width: 300px;
+            min-height: 300px;
+            border-radius: 25px;
+            margin: auto;
+            padding: 30px;
+        }
+
+        label {
+            font-weight: bolder;
+        }
+
+        input {
+            margin-bottom: 10px; 
+            width: 50px;         
+        }
+
+        #botao {
+            padding: 8px;
+            font-size: 1.0em;
+            width: 100px;
+        }
+
+        #contagem {
+            margin-top: 15px;
+        }
+
+        footer {
+            margin: auto;
+            margin-top: 15px;
+        }
+
+        footer p {
+            text-align: center;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: antiquewhite;
+        }
+
+    </style>
+    <title>Contador</title>
+</head>
+<body>
+    <header>
+        <h1>Contador</h1>
+    </header>
+    <section>
+        <div>
+            <label for="inicio">Início: </label>
+            <input type="number" name="caixa" id="inicio">
+            <br>
+            <label for="fim">Fim: </label>
+            <input type="number" name="caixa" id="fim"> 
+            <br>
+            <label for="passo">Passo</label>
+            <input type="number" name="caixa" id="passo">
+            <br>
+            <input type="button" value="Contar" onclick="contador()" id="botao">
+        </div>
+        <div>
+            <p>Contando...</p>
+            <p id="contagem"></p>
+        </div>
+    </section>
+        <footer>
+            <p><a href="#">@CursoEmVideo</a></p>
+        </footer>
+
+        <script>
+            function contador(){
+                var inicio = document.getElementById('inicio')
+                var inicio = Number(inicio.value)
+                var fim = document.getElementById('fim')
+                var fim = Number(fim.value)
+                var passo = document.getElementById('passo')
+                var passo = Number(passo.value)
+
+                var caixa = document.getElementsByName('caixa')
+                
+                var contagem = document.getElementById('contagem')
+                var passos = ''
+                var band = `\u{1F3C1}` //emoji bandeira
+                var mao = `\u{1F449}` //emoji maozinha
+
+                if (caixa[0].value.length == 0 || caixa[1].value.length == 0 || caixa[2].value.length == 0){
+                //testa se todos os inputs estão preenchidos, puxando-os pelo name;
+                    window.alert('ERRO! Preencha todos os campos!')
+                } else if (passo == 0){
+                    var passo = 1
+                    window.alert('Passo 0 é inválido. Será considerado passo 1')
+                } else if (fim < inicio){
+                    while (fim <= inicio) {
+                    passos += `${mao} ${inicio} ` //acumula em passos uma maozinha e a contagem atual;
+                    inicio -= passo //soma passo na variavel inicio;                
+                    }  
+                } else {
+                    while (inicio <= fim) {
+                    passos += `${mao} ${inicio} ` //acumula em passos uma maozinha e a contagem atual;
+                    inicio += passo //soma passo na variavel inicio;                
+                    }  
+                }   
+            contagem.innerText = passos + band //contagem é o <p> que recebe passos e o emoji de bandeira;
+            }
+        </script>
+</body>
+</html>
